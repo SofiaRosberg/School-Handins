@@ -31,10 +31,10 @@ function start()
       }
 		
       	// Om det var ett primtal (alltså om det gick igenom primtalschecken ovan), läggs det till i arrayen med befintliga primtal
-        if (isPrime)
-        {
-          primtal.push(n);
-        }
+      if (isPrime)
+      {
+     	 primtal.push(n);
+      }
     }
   	alert(primtal.join('\n')) //Skriver ut listan med alla hittade primtal i slutet
 }
