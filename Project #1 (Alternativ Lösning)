@@ -1,0 +1,34 @@
+//Ej lösningen jag själv väljer att använda, men ett annat sätt man kan lösa det på:
+
+<script src="https://koda.nu/simple.js"> 
+
+var primtal = [2];  //Array som lagrar de primtal vi hittar; det lägsta primtalet 2 lagrar vi från början eftersom vi måste ha minst ett primtal att kunna kolla delbarhet mot
+var isPrime = true;   //Bool för att undersöka om ett tal är primtal eller inte längre ned i programmet.
+  
+function start()
+{
+	//Kollar varje integer från och med 3 till och med 100 om det är ett primtal 
+	for (var n = 3; n <= 100; n++)	
+    {      
+      //Undersök om detta är ett primtal
+      isPrime = true;
+      
+      //Denna for-loop returnerar false om talet är delbart med något tidigare primtal (då är det inte ett primtal) 
+      //(Notera att alla sammansatta tal kan primtalsfaktoriseras, därmed behöver vi bara kontrollera delbarheten mot tidigare primtal - ej mot alla tidigare sammansatta tal som finns)
+      for (var i = 0; i < primtal.length; i++)
+      {
+        if (n/primtal[i] == parseInt(n/primtal[i]))  //För ett primtal P gäller att: P/n = avrundat(P/n) bara för n=1 och n=P. Detta kontrollerar detta, och returnar false om ej satisfierat.
+        {
+          isPrime = false;
+        }
+      }
+		
+      	// Om det var ett primtal (alltså om det gick igenom primtalschecken ovan), läggs det till i arrayen med befintliga primtal
+      if (isPrime)
+      {
+     	 primtal.push(n);
+      }
+    }
+  	alert(primtal.join('\n')) //Skriver ut listan med alla hittade primtal i slutet
+}
+</script>
