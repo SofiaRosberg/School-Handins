@@ -37,6 +37,6 @@ function start()
 		}
 	}
 	
-	alert(primtal.join('\n')) //Skriver ut listan med alla hittade primtal i slutet
+	alert(primtal.join('\n')); //Skriver ut listan med alla hittade primtal i slutet
 }
 </script>
