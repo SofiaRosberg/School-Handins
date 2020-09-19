@@ -39,6 +39,6 @@ function start()
 	}
 	
 	alert(primtal.join('\n')); //Skriver ut listan med alla hittade primtal i slutet; .join() användes som lösning för att kunna använda '\n' med en lista; detta för att den ska skriva ut varje tal ur listan på en ny rad, och är av visuella skäl.
-	//Jag hade lika gärna kunnat skriva alert(primtal), men det är inte så användarvänligt när man kommer upp till riktigt höga primtal att ha allt på en och samma rad.
+	//Jag hade lika gärna kunnat skriva alert(primtal), men det är inte så användarvänligt när man kommer upp till riktigt höga primtal (och listan blir längre) att ha allt på en och samma rad.
 }
 </script>
