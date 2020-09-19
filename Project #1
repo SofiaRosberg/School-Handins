@@ -22,9 +22,10 @@ function start()
       
 		//Denna for-loop returnerar false om talet är delbart med något tidigare primtal (då är det inte ett primtal) 
 		//(Notera att alla sammansatta tal kan primtalsfaktoriseras, därmed behöver vi bara kontrollera delbarheten mot tidigare primtal - ej mot alla tidigare sammansatta tal som finns)
+		//Det kanske är värt att nämna att listor börjar från 0, därför blir det i < primtal.length, ej <=. Antal element i listan är primtal.length, men indexet på det sista elementet blir primtal.length - 1.
 		for (var i = 0; i < primtal.length; i++)
 		{
-			if ( n % primtal[i] == 0 )  // Om mod(n) av talet är 0, så är det delbart med ett av de tidigare talen <=> då är det inte ett primtal. 
+			if ( n % primtal[i] == 0 )  // Om mod(n) av talet är 0, dvs mod(något tidigare tal) med talet = 0, så är det delbart med ett av de tidigare talen. Då är det inte ett primtal. 
 			{
 				isPrime = false;
 			}
@@ -37,6 +38,6 @@ function start()
 		}
 	}
 	
-	alert(primtal.join('\n')); //Skriver ut listan med alla hittade primtal i slutet
+	alert(primtal.join('\n')); //Skriver ut listan med alla hittade primtal i slutet. '\n' Gör att det skriver ut nästa tal på en ny rad, det är av visuella skäl.
 }
 </script>
