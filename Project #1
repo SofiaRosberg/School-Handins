@@ -5,7 +5,7 @@
 //Det är denna lista "vi" (programmet) kontrollerar delbarheten mot
 //Detta fungerar eftersom alla sammansatta tal kan skrivas som en produkt av primtal (därför räcker det med att kontrollera delbarheten mot andra primtal)
 //Uppgiften var att hitta primtal från 1-100, men programmet kan lätt anpassas för att hitta primtal högre än detta, genom att modifiera den första for-loopen till
-//att fortsätta fler än 100 gånger till önskat antal gånger.
+//att fortsätta till önskat antal gånger.
 
 <script src="https://koda.nu/simple.js"> 
 
