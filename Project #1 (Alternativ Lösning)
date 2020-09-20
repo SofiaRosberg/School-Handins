@@ -17,7 +17,7 @@ function start()
       //(Notera att alla sammansatta tal kan primtalsfaktoriseras, därmed behöver vi bara kontrollera delbarheten mot tidigare primtal - ej mot alla tidigare sammansatta tal som finns)
       for (var i = 0; i < primtal.length; i++)
       {
-        if (n/primtal[i] == parseInt(n/primtal[i]))  //För ett primtal P gäller att: P/n = avrundat(P/n) bara för n=1 och n=P. Detta kontrollerar detta, och returnar false om ej satisfierat.
+        if (n/primtal[i] === parseInt(n/primtal[i]))  //För ett primtal P gäller att: P/n = avrundat(P/n) bara för n=1 och n=P. Detta kontrollerar detta, och returnar false om ej satisfierat.
         {
           isPrime = false;
         }
