@@ -1,14 +1,16 @@
 //Ej lösningen jag själv väljer att använda, men ett annat sätt man kan lösa det på:
 
 <script src="https://koda.nu/simple.js"> 
+//Konfig
+var hittaPrimtalUpptill = 100;
 
 var primtal = [2];  //Array som lagrar de primtal vi hittar; det lägsta primtalet 2 lagrar vi från början eftersom vi måste ha minst ett primtal att kunna kolla delbarhet mot
 var isPrime = true;   //Bool för att undersöka om ett tal är primtal eller inte längre ned i programmet.
   
 function start()
 {
-	//Kollar varje integer från och med 3 till och med 100 om det är ett primtal 
-	for (var n = 3; n <= 100; n++)	
+	//Kollar varje integer från och med 3 till och med hittaPrimtalUpptill (standard: 100) om det är ett primtal 
+	for (var n = 3; n <= hittaPrimtalUpptill; n++)	
     {      
       //Undersök om detta är ett primtal
       isPrime = true;
