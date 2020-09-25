@@ -1,10 +1,10 @@
-//© Sofia 2020
-//Programmet hittar nya primtal genom att kontrollera delbarheten mot alla lägre, redan hittade, primtal. 
-//"Hur då?":
-//När den hittar ett nytt primtal, lägger den till detta i en array (i arrayen lagras alla primtal vi hittar)
-//Det är denna lista "vi" (programmet) kontrollerar delbarheten mot
-//Detta fungerar eftersom alla sammansatta tal kan skrivas som en produkt av primtal (därför räcker det med att kontrollera delbarheten mot andra primtal)
-//Uppgiften var att hitta primtal från 1-100, men programmet kan lätt anpassas för att hitta primtal högre än detta, genom att modifiera värdet på hittaPrimtalUpptill
+/*© Sofia 2020
+Programmet hittar nya primtal genom att kontrollera delbarheten mot alla lägre, redan hittade, primtal. 
+"Hur då?":
+När den hittar ett nytt primtal, lägger den till detta i en array (i arrayen lagras alla primtal vi hittar)
+Det är denna lista "vi" (programmet) kontrollerar delbarheten mot
+Detta fungerar eftersom alla sammansatta tal kan skrivas som en produkt av primtal (därför räcker det med att kontrollera delbarheten mot andra primtal)
+*/Uppgiften var att hitta primtal från 1-100, men programmet kan lätt anpassas för att hitta primtal högre än detta, genom att modifiera värdet på hittaPrimtalUpptill
 
 <script src="https://koda.nu/simple.js"> 
 
