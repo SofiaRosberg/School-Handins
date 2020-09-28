@@ -18,7 +18,7 @@ var alreadyguessedletters = [];
   
 //Konfig    
 var screentextcolor = 'black';				//Standard = 'black';
-var attempts = 8;							//Standard: 8 försök	
+var attempts = 9;							//Standard: 9 försök	
 var easy_presavedwords = ["elbow", "shine", "fever", "storm", "buy"];  
 var medium_presavedwords = ["dividend", "retreat", "express", "threat", "honest"];
 var difficult_presavedwords = ["insistence", "radiation", "guarantee", "established", "transparent"];
@@ -147,7 +147,7 @@ function MakeAGuess()
           
             //Kollar igenom varje bokstav i ordet om det matchar din gissning
           	//Motsvarande ruta(or) till bokstavens plats(er) i ordet avslöjas
-            for (var i = 0; i <= wordtoguess.length; i++)
+            for (var i = 0; i < wordtoguess.length; i++)
             {
                 //Om bokstaven på index i är densamma som bokstaven du gissade...
                 if (askedletter.charAt(0) === wordtoguess.charAt(i) && !alreadyinlist)
@@ -184,6 +184,38 @@ function OnDrawGUI()
   	text(totalWidth - 4000 * scalesizefactor1D, totalHeight - totalHeight + 50 * scalesizefactorY, 70 * scalesizefactor1D, "Letters already guessed: " + alreadyguessedletters, 'green'); 
   	text(totalWidth - 4000 * scalesizefactor1D, totalHeight - totalHeight + 150 * scalesizefactorY, 140 * scalesizefactor1D, "Attempts left: " + attempts, 'purple'); 
   	
+  	switch (attempts)
+    {
+      case '9' :
+        break;
+      case '8' :
+        picture(totalWidth - 1000 * scalesizefactor1D, totalHeight/2 - 200, "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Hangman-0.png/90px-Hangman-0.png");
+        break;
+      case '7' :
+        picture(totalWidth - 1000 * scalesizefactor1D, totalHeight/2 - 200, "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Hangman-1.png/90px-Hangman-1.png");
+        break;
+      case '6' :
+        picture(totalWidth - 1000 * scalesizefactor1D, totalHeight/2 - 200, "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Hangman-2.png/90px-Hangman-2.png");
+        break;
+      case '5' :
+        picture(totalWidth - 1000 * scalesizefactor1D, totalHeight/2 - 200, "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Hangman-2.png/90px-Hangman-2.png");
+        break;
+      case '4' :
+        picture(totalWidth - 1000 * scalesizefactor1D, totalHeight/2 - 200, "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Hangman-3.png/90px-Hangman-3.png");
+        break;
+      case '3' :
+        picture(totalWidth - 1000 * scalesizefactor1D, totalHeight/2 - 200, "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Hangman-4.png/90px-Hangman-4.png");
+        break;
+      case '2' :
+        picture(totalWidth - 1000 * scalesizefactor1D, totalHeight/2 - 200, "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Hangman-5.png/90px-Hangman-5.png");
+        break;
+      case '1' :
+        picture(totalWidth - 1000 * scalesizefactor1D, totalHeight/2 - 200, "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Hangman-5.png/90px-Hangman-5.png");
+        break;
+      case '0':
+        picture(totalWidth - 1000 * scalesizefactor1D, totalHeight/2 - 200, "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Hangman-6.png/90px-Hangman-6.png");
+        break;
+    }
 }
 
 //Presenterar att du vunnit spelet
