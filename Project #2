@@ -8,7 +8,6 @@
 Du ska sedan lyckas gissa ordet innan du blir hängd... 
 */
   
-var charinword = [];
 var wordtoguess;
 var letterslefttoguess;		
 var displaytext = "";										
@@ -19,7 +18,7 @@ var alreadyguessedletters = [];
   
 //Konfig    
 var screentextcolor = 'black';				//Standard = 'black';
-var attempts = 8;					//Standard: 8 försök	
+var attempts = 8;							//Standard: 8 försök	
 var easy_presavedwords = ["elbow", "shine", "fever", "storm", "buy"];  
 var medium_presavedwords = ["dividend", "retreat", "express", "threat", "honest"];
 var difficult_presavedwords = ["insistence", "radiation", "guarantee", "established", "transparent"];
@@ -78,10 +77,9 @@ function start()
     }
   	
    	     
-    //Lagra bokstäverna i ordet i en array och skapar "svars"-rutorna ( _ _ ...)
+    //Skapar "svars"-rutorna ( _ _ ...)
     for (var i = 0; i < wordtoguess.length; i++)
     {
-		charinword.push(wordtoguess.charAt(i));
 		displaytext += " ";
         displaytext += "_";
      }
@@ -149,11 +147,10 @@ function MakeAGuess()
           
             //Kollar igenom varje bokstav i ordet om det matchar din gissning
           	//Motsvarande ruta(or) till bokstavens plats(er) i ordet avslöjas
-            for (var i = 0; i < charinword.length; i++)
+            for (var i = 0; i <= wordtoguess.length; i++)
             {
                 //Om bokstaven på index i är densamma som bokstaven du gissade...
-                console.log("current char in string at index i = "+i+":"+charinword[i])
-                if (askedletter.charAt(0) === charinword[i] && !alreadyinlist)
+                if (askedletter.charAt(0) === wordtoguess.charAt(i) && !alreadyinlist)
                 {
 
                   //Då byts karaktären på platsen 2i + 1 i displaytext ut (är platsen för motsvarande ruta)
