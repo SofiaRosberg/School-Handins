@@ -1,4 +1,5 @@
 <script src="https://koda.nu/simple.js">
+//© Sofia 2020
 
 /* ”hang-man” : Låt en kompis skriva in ett ord på t.ex. 
 5 bokstäver som hålls hemligt. 
