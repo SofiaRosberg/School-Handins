@@ -30,79 +30,76 @@ var insane_presavedwords = ["jazz", "buzz", "rhythm", "zephyr", "zugzwang"];
 
 function start()
 {
-	  //Välj mellan att din kompis skriver in ett ord eller att datorn ska slumpa fram ett
-	  if (confirm("Klicka på OK om du vill att din kompis skriver in ett ord. Annars kommer datorn slumpa fram ett ord åt dig att gissa."))
-    {
-        while (wordtoguess == null)
-        {
-            wordtoguess = prompt("Skriv in ditt ord här: ", "");
-        }
-    }
+	//Välj mellan att din kompis skriver in ett ord eller att datorn ska slumpa fram ett
+	if (confirm("Klicka på OK om du vill att din kompis skriver in ett ord. Annars kommer datorn slumpa fram ett ord åt dig att gissa."))
+	{
+		while (wordtoguess == null)
+		{
+			wordtoguess = prompt("Skriv in ditt ord här: ", "");
+		}
+    	}
   	else
-    {
-      
-		    while (wordtoguess === undefined)
-        {
-        
-			      let difficultyfactor = prompt("Skriv svårighetsgrad: easy, medium, difficult eller insane","");
+	{
+      		while (wordtoguess === undefined)
+        	{
+			let difficultyfactor = prompt("Skriv svårighetsgrad: easy, medium, difficult eller insane","");
 			
-			      switch (difficultyfactor)
-          	{
-              case 'easy':
-					        wordtoguess = easy_presavedwords[(random(easy_presavedwords.length-1))];
-					        break;
-              case 'medium': 
-					        wordtoguess = medium_presavedwords[(random(medium_presavedwords.length-1))];
-				        	break;
-              case 'difficult':
-					        wordtoguess = difficult_presavedwords[(random(difficult_presavedwords.length-1))];
-					        break;   
-              case 'insane':
-					        wordtoguess = insane_presavedwords[(random(insane_presavedwords.length-1))];
-                	break;
-            }
-        }
-    }
+			switch (difficultyfactor)
+          		{
+              			case 'easy':
+					wordtoguess = easy_presavedwords[(random(easy_presavedwords.length-1))];
+					break;
+              			case 'medium': 
+					wordtoguess = medium_presavedwords[(random(medium_presavedwords.length-1))];
+				        break;
+				case 'difficult':
+					wordtoguess = difficult_presavedwords[(random(difficult_presavedwords.length-1))];
+					break;   
+              			case 'insane':
+					wordtoguess = insane_presavedwords[(random(insane_presavedwords.length-1))];
+                			break;
+            		}
+        	}
+	}
   	
   	//Om ordet är längre än 10 bokstäver, skalas textstorleken ned för displaytext
   	letterslefttoguess = wordtoguess.length;
   	if (33 > wordtoguess.length > 10 )
-    {
-		    scalesizefactoranswerbox = scalesizefactoranswerbox - (wordtoguess.length - 5);      
-    }
+    	{
+		scalesizefactoranswerbox = scalesizefactoranswerbox - (wordtoguess.length - 5);      
+    	}
   	if (wordtoguess.length > 33)
-    {
-        scalesizefactoranswerbox = 8;
-    }
+    	{
+		scalesizefactoranswerbox = 8;
+	}
   	
    	     
-    //Lagra bokstäverna i ordet i en array och skapar "svars"-rutorna (" _ _ _" ...)
-    for (var i = 0; i < wordtoguess.length; i++)
-    {
-		    charinword.push(wordtoguess.charAt(i));
-		    displaytext += " ";
-        displaytext += "_";
-     }
+	//Lagra bokstäverna i ordet i en array och skapar "svars"-rutorna (" _ _ _" ...)
+	for (var i = 0; i < wordtoguess.length; i++)
+	{
+		charinword.push(wordtoguess.charAt(i));
+		displaytext += " ";
+       		displaytext += "_";
+	}
 		
-  		/*Medan du har fler än 0 försök, så fortsätter spelet
-  		Du vinner om du lyckas gissa fram alla bokstäver
-  		Du förlorar om du får slut på försök */
-    while (attempts > 0)
-		{
-        OnDrawGUI();
-			  MakeAGuess();
+  	/*Medan du har fler än 0 försök, så fortsätter spelet
+  	Du vinner om du lyckas gissa fram alla bokstäver
+  	Du förlorar om du får slut på försök */
+	while (attempts > 0)
+	{
+        	OnDrawGUI();
+		MakeAGuess();
           
-        if (letterslefttoguess === 0)
-        {
-            Victory();
-            break;
-       	}
+		if (letterslefttoguess === 0)
+		{
+		    Victory();
+		    break;
 		}
-    if (attempts < 1)
-    {
-        Defeat();
-    }
-   
+	}
+	if (attempts < 1)
+	{
+        	Defeat();
+	}   
 }
 
 /*Låter dig gissa ett ord eller en bokstav
@@ -110,66 +107,66 @@ Du får avdrag om det är fel
 Om du gissar rätt får du se på skärmen vilken/vilka plats(er) bokstaven befinner sig på*/
 function MakeAGuess()
 {
-    let askedletter = prompt("Gissa en bokstav eller ett ord");
+	let askedletter = prompt("Gissa en bokstav eller ett ord");
   
   	if (askedletter != null)
-    {
-      	//Om du gissar ett ord, måste ordet exakt matcha det rätta ordet.
-      	if (askedletter.length > 1)
-        {
-			      if (askedletter === wordtoguess)
-            {
-              	letterslefttoguess = 0;  
-            }
-          	else
-            {
-				        attempts = attempts - 1;
-            }
-        }
+    	{
+		//Om du gissar ett ord, måste ordet exakt matcha det rätta ordet.
+		if (askedletter.length > 1)
+		{
+			if (askedletter === wordtoguess)
+		    	{
+				letterslefttoguess = 0;  
+		    	}
+			else
+		    	{
+				attempts = attempts - 1;
+		    	}
+		}
       	
-      	//Om du gissar en bokstav förlorar du ett försök om det är fel.
-		    if (askedletter.length === 1)
-        {
-			      var correctletter = false;
+      		//Om du gissar en bokstav förlorar du ett försök om det är fel.
+		if (askedletter.length === 1)
+        	{
+			var correctletter = false;
           
-          	//Har vi redan gissat bokstaven tidigare?
-			      var alreadyinlist = false;
-			      for (var i = 0; i < alreadyguessedletters.length; i++)
-			      {
+          		//Har vi redan gissat bokstaven tidigare?
+			var alreadyinlist = false;
+			for (var i = 0; i < alreadyguessedletters.length; i++)
+			{
               	
-				        if (alreadyguessedletters[i] === askedletter.charAt(0))
-                {
-					          correctletter = true;
-                  	alreadyinlist = true;
-                }
-			      }
+				if (alreadyguessedletters[i] === askedletter.charAt(0))
+				{
+					correctletter = true;
+					alreadyinlist = true;
+				}
+			}
           
-            //Kollar igenom varje bokstav i ordet om det matchar din gissning
+		//Kollar igenom varje bokstav i ordet om det matchar din gissning
           	//Motsvarande ruta(or) till bokstavens plats(er) i ordet avslöjas
-            for (var i = 0; i < charinword.length; i++)
-            {
-                //Om bokstaven på index i är densamma som bokstaven du gissade...
-                console.log("current char in string at index i = "+i+":"+charinword[i])
-                if (askedletter.charAt(0) === charinword[i] && !alreadyinlist)
-                {
+            	for (var i = 0; i < charinword.length; i++)
+            	{
+			//Om bokstaven på index i är densamma som bokstaven du gissade...
+			console.log("current char in string at index i = "+i+":"+charinword[i])
+			if (askedletter.charAt(0) === charinword[i] && !alreadyinlist)
+			{
 
-                  //Då byts karaktären på platsen 2i + 1 i displaytext ut (är platsen för motsvarande ruta)
-                  displaytext = displaytext.substr(0, (2*i + 1)) + askedletter.charAt(0) + displaytext.substr(2*i + 2);
-                  letterslefttoguess = letterslefttoguess - 1;
-                  correctletter = true;
-                }
+			  //Då byts karaktären på platsen 2i + 1 i displaytext ut (är platsen för motsvarande ruta)
+			  displaytext = displaytext.substr(0, (2*i + 1)) + askedletter.charAt(0) + displaytext.substr(2*i + 2);
+			  letterslefttoguess = letterslefttoguess - 1;
+			  correctletter = true;
+			}
 
-         	 }
+		}
 	  		
           	if (!alreadyinlist)
-            {
-				        alreadyguessedletters.push(askedletter.charAt(0));              
-            }
+            	{
+			alreadyguessedletters.push(askedletter.charAt(0));              
+            	}
           
-            if (!correctletter)
-            {
-                attempts = attempts - 1;
-            }
+            	if (!correctletter)
+            	{
+                	attempts = attempts - 1;
+            	}
 
         }
     }
@@ -180,7 +177,7 @@ function OnDrawGUI()
 {
   	clearScreen();
   	//Text 1 visar ordet du håller på att gissa, 2 bokstäver du redan gissat, 3 antal försök kvar
-	  text(totalWidth - totalWidth, totalHeight/2,  scalesizefactoranswerbox, displaytext, screentextcolor);
+	text(totalWidth - totalWidth, totalHeight/2,  scalesizefactoranswerbox, displaytext, screentextcolor);
   	text(totalWidth - 4000 * scalesizefactor1D, totalHeight - totalHeight + 50 * scalesizefactorY, 70 * scalesizefactor1D, "Letters already guessed: " + alreadyguessedletters, 'green'); 
   	text(totalWidth - 4000 * scalesizefactor1D, totalHeight - totalHeight + 150 * scalesizefactorY, 140 * scalesizefactor1D, "Attempts left: " + attempts, 'purple'); 
   	
@@ -189,17 +186,17 @@ function OnDrawGUI()
 //Presenterar att du vunnit spelet
 function Victory()
 {	
-	  clearScreen();
-  	screentextcolor = 'black';
-	  text(xMiddle - 740 * scalesizefactor1D, yMiddle, 250 * scalesizefactor1D, "You win!", screentextcolor);
+	clearScreen();
+	screentextcolor = 'black';
+	text(xMiddle - 740 * scalesizefactor1D, yMiddle, 250 * scalesizefactor1D, "You win!", screentextcolor);
 }
 
 //Presenterar att du förlorat spelet
 function Defeat()
 {	
-	  clearScreen();
-  	screentextcolor = 'red';
-	  text(xMiddle - 740 * scalesizefactor1D, yMiddle, 250 * scalesizefactor1D, "You lose!", screentextcolor);  
+	clearScreen();
+	screentextcolor = 'red';
+	text(xMiddle - 740 * scalesizefactor1D, yMiddle, 250 * scalesizefactor1D, "You lose!", screentextcolor);  
   	alert("Correct word was: " + wordtoguess);
 }  
 
