@@ -35,7 +35,7 @@ function start()
 	if (confirm("Klicka på OK om du vill att din kompis skriver in ett ord. Annars kommer datorn slumpa fram ett ord åt dig att gissa."))
     {
       		var usingillegalcharacters = true;
-      		while (wordtoguess === null || usingillegalcharacters === true)
+      		while (wordtoguess === null || usingillegalcharacters)
             {
               	usingillegalcharacters = true;
 				wordtoguess = prompt("Skriv in ditt ord här: ", "");
