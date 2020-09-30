@@ -22,7 +22,7 @@ var easy_presavedwords = ["elbow", "shine", "fever", "storm", "buy"];
 var medium_presavedwords = ["dividend", "retreat", "express", "threat", "honest"];
 var difficult_presavedwords = ["insistence", "radiation", "guarantee", "established", "transparent"];
 var insane_presavedwords = ["jazz", "buzz", "rhythm", "zephyr", "zugzwang"];
-var wordsavailable = "abcdefghijklmnopqstuvwqyzåäö";
+var wordsavailable = "abcdefghijklmnopqstuvwqxyzåäö";
     
 //Easy: 3-5 bokstäver
 //Medium: 6-8 bokstäver
