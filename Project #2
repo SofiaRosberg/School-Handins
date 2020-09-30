@@ -1,4 +1,3 @@
-<script src="https://koda.nu/simple.js">
 //© Sofia 2020
 
 <script src="https://koda.nu/simple.js">
@@ -23,7 +22,8 @@ var easy_presavedwords = ["elbow", "shine", "fever", "storm", "buy"];
 var medium_presavedwords = ["dividend", "retreat", "express", "threat", "honest"];
 var difficult_presavedwords = ["insistence", "radiation", "guarantee", "established", "transparent"];
 var insane_presavedwords = ["jazz", "buzz", "rhythm", "zephyr", "zugzwang"];
-
+var wordsavailable = "abcdefghijklmnopqstuvwqyzåäö";
+    
 //Easy: 3-5 bokstäver
 //Medium: 6-8 bokstäver
 //Hard: >8 bokstäver
@@ -34,11 +34,31 @@ function start()
 	//Välj mellan att din kompis skriver in ett ord eller att datorn ska slumpa fram ett
 	if (confirm("Klicka på OK om du vill att din kompis skriver in ett ord. Annars kommer datorn slumpa fram ett ord åt dig att gissa."))
     {
-      
-      		while (wordtoguess == null)
+      		var usingillegalcharacters = true;
+      		while (wordtoguess === null || usingillegalcharacters === true)
             {
+              	usingillegalcharacters = true;
 				wordtoguess = prompt("Skriv in ditt ord här: ", "");
+              
+              	for (var i = 0; i < wordtoguess.length; i++)
+                {
+                  	for (var j = 0; j <= wordsavailable.length; j++)
+                    {
+                      if (wordtoguess.charAt(i) === wordsavailable.charAt(j))
+                      {
+						usingillegalcharacters = false;
+                      }
+                    }
+                }
+			if (usingillegalcharacters)
+            {
+            	alert("Sorry, only letters a-ö in swedish alphabet allowed");  
             }
+            }
+
+      
+      
+
     }
   	else
     {
@@ -111,10 +131,10 @@ Om du gissar rätt får du se på skärmen vilken/vilka plats(er) bokstaven befi
 function MakeAGuess()
 {
 	let askedletter = prompt("Gissa en bokstav eller ett ord");
-  
+  	
   	if (askedletter != null)
     {
-      	
+              
       	//Om du gissar ett ord, måste ordet exakt matcha det rätta ordet.
       	if (askedletter.length > 1)
         {
@@ -131,46 +151,62 @@ function MakeAGuess()
       	//Om du gissar en bokstav förlorar du ett försök om det är fel.
 		if (askedletter.length === 1)
         {
-			var correctletter = false;
-          
-          	//Har vi redan gissat bokstaven tidigare?
-			var alreadyinlist = false;
-			for (var i = 0; i < alreadyguessedletters.length; i++)
-			{
-              	
-				if (alreadyguessedletters[i] === askedletter.charAt(0))
-                {
-					correctletter = true;
-                  	alreadyinlist = true;
-                }
-			}
-          
-            //Kollar igenom varje bokstav i ordet om det matchar din gissning
-          	//Motsvarande ruta(or) till bokstavens plats(er) i ordet avslöjas
-            for (var i = 0; i < wordtoguess.length; i++)
+            
+          	var acceptableletter = false;
+          	//Kontrollera att du inte gissat på en specialkaraktär
+          	for (var i = 0; i <= wordsavailable.length; i++)
             {
-                //Om bokstaven på index i är densamma som bokstaven du gissade...
-                if (askedletter.charAt(0) === wordtoguess.charAt(i) && !alreadyinlist)
-                {
 
-                  //Då byts karaktären på platsen 2i + 1 i displaytext ut (är platsen för motsvarande ruta)
-                  displaytext = displaytext.substr(0, (2*i + 1)) + askedletter.charAt(0) + displaytext.substr(2*i + 2);
-                  letterslefttoguess = letterslefttoguess - 1;
-                  correctletter = true;
-                }
-
-         	 }
-	  		
-          	if (!alreadyinlist)
-            {
-				alreadyguessedletters.push(askedletter.charAt(0));              
+                  if (askedletter.charAt(0) === wordsavailable.charAt(i))
+                  {
+                      acceptableletter = true;
+                      break;
+                  }
             }
           
-            if (!correctletter)
+          	if (acceptableletter)
             {
-                attempts = attempts - 1;
-            }
+              var correctletter = false;
 
+              //Har vi redan gissat bokstaven tidigare?
+              var alreadyinlist = false;
+              for (var i = 0; i < alreadyguessedletters.length; i++)
+              {
+
+                  if (alreadyguessedletters[i] === askedletter.charAt(0))
+                  {
+                      correctletter = true;
+                      alreadyinlist = true;
+                  }
+              }
+
+              //Kollar igenom varje bokstav i ordet om det matchar din gissning
+              //Motsvarande ruta(or) till bokstavens plats(er) i ordet avslöjas
+              for (var i = 0; i < wordtoguess.length; i++)
+              {
+                  //Om bokstaven på index i är densamma som bokstaven du gissade...
+                  if (askedletter.charAt(0) === wordtoguess.charAt(i) && !alreadyinlist)
+                  {
+
+                    //Då byts karaktären på platsen 2i + 1 i displaytext ut (är platsen för motsvarande ruta)
+                    displaytext = displaytext.substr(0, (2*i + 1)) + askedletter.charAt(0) + displaytext.substr(2*i + 2);
+                    letterslefttoguess = letterslefttoguess - 1;
+                    correctletter = true;
+                  }
+
+               }
+
+              if (!alreadyinlist)
+              {
+                  alreadyguessedletters.push(askedletter.charAt(0));              
+              }
+
+              if (!correctletter)
+              {
+                  attempts = attempts - 1;
+              }
+
+          }
         }
     }
 }
@@ -236,3 +272,4 @@ function Defeat()
 }  
 
 </script>
+
