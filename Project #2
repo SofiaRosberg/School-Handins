@@ -42,7 +42,7 @@ function start()
               
               	for (var i = 0; i < wordtoguess.length; i++)
                 {
-                  	for (var j = 0; j <= wordsavailable.length; j++)
+                  	for (var j = 0; j < wordsavailable.length; j++)
                     {
                       if (wordtoguess.charAt(i) === wordsavailable.charAt(j))
                       {
@@ -50,10 +50,10 @@ function start()
                       }
                     }
                 }
-			if (usingillegalcharacters)
-            {
-            	alert("Sorry, only letters a-ö in swedish alphabet allowed");  
-            }
+              if (usingillegalcharacters)
+              {
+                  alert("Sorry, only letters " + wordsavailable.charAt(0) + "-" +  wordsavailable.charAt(wordsavailable.length-1) +" allowed");  
+              }
             }
 
       
@@ -272,4 +272,5 @@ function Defeat()
 }  
 
 </script>
+
 
