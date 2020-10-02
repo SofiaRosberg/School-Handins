@@ -152,20 +152,8 @@ function MakeAGuess()
 		if (askedletter.length === 1)
         {
             
-          	var acceptableletter = false;
-          	//Kontrollera att du inte gissat på en specialkaraktär
-          	for (var i = 0; i <= wordsavailable.length; i++)
-            {
-
-                  if (askedletter.charAt(0) === wordsavailable.charAt(i))
-                  {
-                      acceptableletter = true;
-                      break;
-                  }
-            }
           
-          	if (acceptableletter)
-            {
+
               var correctletter = false;
 
               //Har vi redan gissat bokstaven tidigare?
@@ -206,7 +194,7 @@ function MakeAGuess()
                   attempts = attempts - 1;
               }
 
-          }
+          
         }
     }
 }
