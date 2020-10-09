@@ -9,7 +9,7 @@ Uppgiften var att hitta primtal från 1-100, men programmet kan lätt anpassas f
 <script src="https://koda.nu/simple.js"> 
 
 //Konfig
-var hittaPrimtalUpptill = 500000;
+var hittaPrimtalUpptill = 100;
 
 var primtal = [2];  	//Array som lagrar de primtal vi hittar; det lägsta primtalet 2 lagrar vi från början eftersom vi måste ha minst ett primtal att kunna kolla delbarhet mot
 var isPrime = true;   //Bool för att undersöka om ett tal är primtal eller inte längre ned i programmet.
