@@ -9,13 +9,14 @@ Uppgiften var att hitta primtal från 1-100, men programmet kan lätt anpassas f
 <script src="https://koda.nu/simple.js"> 
 
 //Konfig
-var hittaPrimtalUpptill = 100;
+var hittaPrimtalUpptill = 500000;
 
-var primtal = [2];  //Array som lagrar de primtal vi hittar; det lägsta primtalet 2 lagrar vi från början eftersom vi måste ha minst ett primtal att kunna kolla delbarhet mot
+var primtal = [2];  	//Array som lagrar de primtal vi hittar; det lägsta primtalet 2 lagrar vi från början eftersom vi måste ha minst ett primtal att kunna kolla delbarhet mot
 var isPrime = true;   //Bool för att undersöka om ett tal är primtal eller inte längre ned i programmet.
   
 function start()
 {
+  	var t0 = new Date().getTime();
 	//Kollar varje integer från och med 3 till och med värdet på hittaPrimtalUpptill (standard: 100) om det är ett primtal 
 	for (var n = 3; n <= hittaPrimtalUpptill; n++)	
 	{      
@@ -24,9 +25,9 @@ function start()
       
 		/*Denna for-loop returnerar false om talet är delbart med något tidigare primtal (då är det inte ett primtal) 
 		Det kanske är värt att nämna att listor börjar från 0, därför blir det i < primtal.length, ej <=. Antal element i listan är primtal.length, men indexet på det sista elementet blir primtal.length - 1. */
-		for (var i = 0; i < primtal.length; i++)
+		for (var i = 0; i < sqrt(primtal.length); i++)
 		{
-			if ( n % primtal[i] === 0 )  // Om n mod(primtal[i], dvs något tidigare primtal) med talet är 0, så är det delbart med ett lägre primtal. Då är det inte ett primtal. 
+			if (n % primtal[i] === 0 )  // Om n mod(primtal[i], dvs något tidigare primtal) med talet är 0, så är det delbart med ett lägre primtal. Då är det inte ett primtal. 
 			{
 				isPrime = false;
 			}
@@ -40,6 +41,8 @@ function start()
 	}
 	
 	//Skriver ut listan med alla hittade primtal i slutet
+  	var t1 = new Date().getTime() - t0;
+  	alert("Execution time is:" + t1/1000);
 	alert(primtal); 
 
 }
