@@ -16,7 +16,7 @@ function start()
       isPrime = true;
       
       //Denna for-loop returnerar false om den avrundade kvoten med något tidigare primtal är 1 (då är det inte ett primtal) 
-      for (var i = 0; i < primtal.length; i++)
+      for (var i = 0; i < sqrt(primtal.length); i++)
       {
         if (n/primtal[i] === parseInt(n/primtal[i]))  //För ett primtal P gäller att: P/n = avrundat(P/n) bara för n=1 och n=P. Detta kontrollerar detta, och returnar false om ej satisfierat.
         {
