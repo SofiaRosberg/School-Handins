@@ -1,46 +1,43 @@
-/*© Sofia 2020
-Programmet hittar nya primtal genom att kontrollera delbarheten mot alla lägre, redan hittade, primtal. 
-"Hur då?":
-När den hittar ett nytt primtal, lägger den till detta i en array (i arrayen lagras alla primtal vi hittar)
-Det är denna lista "vi" (programmet) kontrollerar delbarheten mot
-Detta fungerar eftersom alla sammansatta tal kan skrivas som en produkt av primtal (därför räcker det med att kontrollera delbarheten mot andra primtal)
-Uppgiften var att hitta primtal från 1-100, men programmet kan lätt anpassas för att hitta primtal högre än detta, genom att modifiera värdet på hittaPrimtalUpptill */
-
 <script src="https://koda.nu/simple.js"> 
 
-//Konfig
-var hittaPrimtalUpptill = 100;
+/* Programmet hittar nya primtal genom att kontrollera delbarheten mot alla lägre redan hittade primtal, fram till roten av talet du söker. 
+När den hittar nya primtal, lägger den till detta i en array (i arrayen lagras alla primtal vi hittar)
+Den ger även exekveringstiden för att göra detta.
+Uppgiften var att hitta primtal från 1-100, men programmet kan hitta primtal högre än detta genom att modifiera värdet på findPrimesUpto */
+//© Sofia 2020
 
-var primtal = [2];  	//Array som lagrar de primtal vi hittar; det lägsta primtalet 2 lagrar vi från början eftersom vi måste ha minst ett primtal att kunna kolla delbarhet mot
-var isPrime = true;   //Bool för att undersöka om ett tal är primtal eller inte längre ned i programmet.
+
+//Konfig
+var findPrimesUpto = 100;
+var primtal = [2];  		
   
 function start()
 {
   	var t0 = new Date().getTime();
-	//Kollar varje integer från och med 3 till och med värdet på hittaPrimtalUpptill (standard: 100) om det är ett primtal 
-	for (var n = 3; n <= hittaPrimtalUpptill; n++)	
+	
+	//Undersöker vilka tal som är primtal 
+	for (var n = 3; n <= findPrimesUpto; n++)	
 	{      
-		//Undersök om detta är ett primtal
 		isPrime = true;
       
-		/*Denna for-loop returnerar false om talet är delbart med något tidigare primtal (då är det inte ett primtal) 
-		Det kanske är värt att nämna att listor börjar från 0, därför blir det i < primtal.length, ej <=. Antal element i listan är primtal.length, men indexet på det sista elementet blir primtal.length - 1. */
+		//Om talet är delbart med något tidigare primtal är det inte ett primtal
 		for (var i = 0; i < sqrt(primtal.length); i++)
 		{
-			if (n % primtal[i] === 0 )  // Om n mod(primtal[i], dvs något tidigare primtal) med talet är 0, så är det delbart med ett lägre primtal. Då är det inte ett primtal. 
+			// Om n mod(primtal[i], dvs något tidigare primtal) med talet är 0, så är det delbart med ett lägre primtal
+			if (n % primtal[i] === 0 )  
 			{
 				isPrime = false;
 			}
 		}
 		
-		// Om det var ett primtal (alltså om det gick igenom primtalschecken ovan), läggs det till i arrayen med befintliga primtal
+		//Om det var ett primtal läggs det till i listan med befintliga primtal
 		if (isPrime)
 		{
 			primtal.push(n);
 		}
 	}
 	
-	//Skriver ut listan med alla hittade primtal i slutet
+	//Skriver ut listan med alla hittade primtal i slutet och exekveringstiden
   	var t1 = new Date().getTime() - t0;
   	alert("Execution time is:" + t1/1000);
 	alert(primtal); 
