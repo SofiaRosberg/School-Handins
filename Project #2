@@ -5,7 +5,8 @@
 Du ska sedan lyckas gissa ordet innan du blir hängd... 
 */
 //© Sofia 2020
-  
+
+//Globala variabler:
 var wordtoguess;
 var letterslefttoguess;		
 var displaytext = "";										
