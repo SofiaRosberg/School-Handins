@@ -38,8 +38,8 @@ function start()
 	}
 	
 	//Skriver ut listan med alla hittade primtal i slutet och exekveringstiden
-  	var t1 = new Date().getTime() - t0;
-  	alert("Execution time is:" + t1/1000);
+  	var timeDeltaTime = new Date().getTime() - t0;
+  	alert("Execution time is:" + timeDeltaTime/1000);
 	alert(primtal); 
 
 }
