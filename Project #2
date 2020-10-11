@@ -12,7 +12,7 @@ var letterslefttoguess;
 var displaytext = "";										
 var scalesizefactorY = totalHeight / 1080;
 var scalesizefactor1D = (totalWidth * totalHeight) / (1920 * 1080);	
-var scalesizefactoranswerbox = 35;	//Standard: 35
+var scalesizefactoranswerbox = 35;	
 var alreadyguessedletters = [];
   
 //Konfig    
