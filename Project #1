@@ -20,10 +20,9 @@ function start()
 	{      
 		isPrime = true;
       
-		//Om talet är delbart med något tidigare primtal är det inte ett primtal
+		//Kontrollerar om talet är delbart med något tidigare primtal, då är det inte ett primtal
 		for (var i = 0; i < sqrt(primenumbers.length); i++)
 		{
-			// Om n mod(primenumbers[i], dvs något tidigare primtal) med talet är 0, så är det delbart med ett lägre primtal
 			if (n % primenumbers[i] === 0 )  
 			{
 				isPrime = false;
