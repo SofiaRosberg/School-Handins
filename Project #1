@@ -37,7 +37,7 @@ function start()
 		}
 	}
 	
-	//Skriver ut listan med alla hittade primtal i slutet och exekveringstiden
+	//Skriver ut listan med alla hittade primtal i slutet och exekveringstiden i s
   	var timeDeltaTime = new Date().getTime() - t0;
   	alert("Execution time is:" + timeDeltaTime/1000);
 	alert(primtal); 
