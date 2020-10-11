@@ -1,7 +1,7 @@
 <script src="https://koda.nu/simple.js">
 
-/* ”hang-man” : Låt en kompis skriva in ett ord på t.ex. 
-5 bokstäver som hålls hemligt. 
+/* ”hang-man” : Välj mellan att låta en kompis skriva in ett ord på t.ex. 
+5 bokstäver som hålls hemligt, eller så kan datorn slumpa fram ordet.  
 Du ska sedan lyckas gissa ordet innan du blir hängd... 
 */
 //© Sofia 2020
@@ -16,7 +16,7 @@ var alreadyguessedletters = [];
   
 //Konfig    
 var screentextcolor = 'black';				//Standard = 'black';
-var attempts = 9;							//Standard: 9 försök	
+var attempts = 9;					//Standard: 9 försök	
 var easy_presavedwords = ["elbow", "shine", "fever", "storm", "buy"];  
 var medium_presavedwords = ["dividend", "retreat", "express", "threat", "honest"];
 var difficult_presavedwords = ["insistence", "radiation", "guarantee", "established", "transparent"];
@@ -80,7 +80,7 @@ function start()
 		}
 	}
   	
-	//Om ordet är längre än 10 bokstäver, skalas det ned
+	//Om ordet är längre än 10 bokstäver, måste det skalas ned
   	letterslefttoguess = wordtoguess.length;
   	if (33 > wordtoguess.length > 10 )
     	{
@@ -92,7 +92,7 @@ function start()
     	}
   	
    	     
-    	//Skapar "svars"-rutorna ( _ _ ...)
+    	//Skapar "svars"-rutorna  " _ _ _ _"
     	for (var i = 0; i < wordtoguess.length; i++)
     	{
 		displaytext += " ";
@@ -100,7 +100,7 @@ function start()
      	}
 		
   	/*Fortsätter spelet medan du har fler än 0 försök,
-  	vinner spelet om du lyckas gissa fram alla bokstäver
+  	vinner spelet om du lyckas gissa fram ordet
   	förlorar spelet om du får slut på försök */
 	while (attempts > 0)
 	{
