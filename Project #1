@@ -9,33 +9,35 @@ Uppgiften var att hitta primtal från 1-100, men programmet kan hitta primtal h�
 
 //Konfig
 var findPrimesUpTo = 100;
-var primenumbers = [2];  		
+var primenumbers = [2, 3];  		
   
 function start()
 {
   	var t0 = new Date().getTime();
 	
 	//Undersöker vilka tal som är primtal 
-	for (var n = 3; n <= findPrimesUpTo; n++)	
+	for (var n = 3; n <= findPrimesUpTo; n = n+2)	
 	{      
 		isPrime = true;
-      
-		//Kontrollerar om talet är delbart med något tidigare primtal, då är det inte ett primtal
-		for (var i = 0; i < sqrt(primenumbers.length); i++)
-		{
-			if (n % primenumbers[i] === 0 )  
-			{
-				isPrime = false;
-			}
-		}
-		
-		//Om det var ett primtal läggs det till i listan med befintliga primtal
+          	//Kontrollerar om talet är delbart med något tidigare primtal, då är det inte ett primtal
+          	for (var i = 0; i*i < primenumbers.length; i++)
+          	{
+            		if (n % primenumbers[i] === 0)  
+            		{
+              			isPrime = false;
+            		}
+
+          	}
+          
+          	//Om det var ett primtal läggs det till i listan med befintliga primtal
 		if (isPrime)
-		{
-			primenumbers.push(n);
-		}
+          	{
+           		primenumbers.push(n);
+          	}
+
 	}
-	
+
+  
 	//Skriver ut listan med alla hittade primtal i slutet och exekveringstiden i s
   	var timeDeltaTime = new Date().getTime() - t0;
   	alert("Execution time is: " + timeDeltaTime/1000 + " s");
@@ -43,3 +45,4 @@ function start()
 
 }
 </script>
+
