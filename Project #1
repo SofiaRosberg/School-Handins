@@ -1,48 +1,56 @@
 <script src="https://koda.nu/simple.js"> 
 
-/* Programmet hittar nya primtal genom att kontrollera delbarheten mot alla lägre redan hittade primtal, fram till roten av talet du söker. 
-När den hittar nya primtal, lägger den till detta i en array (i arrayen lagras alla primtal vi hittar)
-Den ger även exekveringstiden för att göra detta.
+/* Programmet hittar nya primtal upp till en given maxgräns.
+När den är färdig ger den exekveringstiden det tog.
 Uppgiften var att hitta primtal från 1-100, men programmet kan hitta primtal högre än detta genom att modifiera värdet på findPrimesUpTo */
-//© Sofia 2020
+//© Sofia Rosberg 2020
 
 
 //Konfig
 var findPrimesUpTo = 100;
-var primenumbers = [2];  		
+var primenumbers = [2, 3, 5];  		
   
 function start()
 {
-  	var t0 = new Date().getTime();
+  	var t0 = new Date().getTime(); // Starttid för tidsräknare
+	var toCheck;
 	
 	//Undersöker vilka tal som är primtal 
-	for (var n = 3; n <= findPrimesUpTo; n = n+2)	
+	for (var n = 6; n <= findPrimesUpTo; n = n+6)
 	{      
-		isPrime = true;
-          	//Kontrollerar om talet är delbart med något tidigare primtal, då är det inte ett primtal
-          	for (var i = 0; i*i < primenumbers.length; i++)
-          	{
-            		if (n % primenumbers[i] === 0)  
-            		{
-              			isPrime = false;
-            		}
+      		for (var pm = -1; pm < 2; pm=pm+2)
+        	{
+          		toCheck = n+pm; 
+			isPrime = true;
+		
+			//Kontrollerar om talet är delbart med något tidigare primtal, då är det inte ett primtal
+			for (var i = 0; i*i < primenumbers.length; i++)
+			{
+				if (toCheck % primenumbers[i] === 0)  
+				{
+					isPrime = false;
+					break;
+				}
 
-          	}
-          
-          	//Om det var ett primtal läggs det till i listan med befintliga primtal
-		if (isPrime)
-          	{
-           		primenumbers.push(n);
-          	}
+			}
+
+			//Om det var ett primtal läggs det till i listan med befintliga primtal
+			if (isPrime)
+			{
+				primenumbers.push(toCheck);
+			}
+        	}
 
 	}
-
-  
+	
 	//Skriver ut listan med alla hittade primtal i slutet och exekveringstiden i s
   	var timeDeltaTime = new Date().getTime() - t0;
   	alert("Execution time is: " + timeDeltaTime/1000 + " s");
 	alert(primenumbers); 
-
 }
 </script>
+
+
+
+
 
