@@ -18,7 +18,8 @@ function start()
 	//Undersöker vilka tal som är primtal 
 	for (var n = 6; n <= findPrimesUpTo; n = n+6)
 	{      
-      		for (var pm = -1; pm < 2; pm=pm+2)
+		//Undersöka 6n + 1 och 6n - 1
+      		for (var pm = -1; pm < 2; pm = pm + 2)
         	{
           		toCheck = n+pm; 
 			isPrime = true;
