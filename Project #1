@@ -7,7 +7,7 @@ Uppgiften var att hitta primtal fr√•n 1-100, men programmet kan hitta primtal h√
 
 
 //Konfig
-var findPrimesUpTo = 10000000;
+var findPrimesUpTo = 100;
 var primenumbers = [2, 3, 5];  		
   
 function start()
