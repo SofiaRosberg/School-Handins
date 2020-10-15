@@ -1,9 +1,6 @@
 <script src="https://koda.nu/simple.js">
 
-/* ”hang-man” : Välj mellan att låta en kompis skriva in ett ord på t.ex. 
-5 bokstäver som hålls hemligt, eller så kan datorn slumpa fram ordet.  
-Du ska sedan lyckas gissa ordet innan du blir hängd... 
-*/
+// ”hang-man” : du ska gissa ordet innan du blir hängd
 //© Sofia 2020
 
 //Globala variabler:
@@ -191,7 +188,7 @@ function MakeAGuess()
 function OnDrawGUI()
 {
   	clearScreen();
-	text(totalWidth - totalWidth, totalHeight/2,  scalesizefactoranswerbox, displaytext, screentextcolor);
+	text(totalWidth - totalWidth, totalHeight/2 + 364 * scalesizefactorY,  scalesizefactoranswerbox, displaytext, screentextcolor);
   	text(totalWidth - 4000 * scalesizefactor1D, totalHeight - totalHeight + 50 * scalesizefactorY, 70 * scalesizefactor1D, "Letters already guessed: " + alreadyguessedletters, 'green'); 
   	text(totalWidth - 4000 * scalesizefactor1D, totalHeight - totalHeight + 150 * scalesizefactorY, 140 * scalesizefactor1D, "Attempts left: " + attempts, 'purple'); 
 }
@@ -214,5 +211,8 @@ function Defeat()
 }  
 
 </script>
+
+
+
 
 
