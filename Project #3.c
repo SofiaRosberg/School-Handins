@@ -57,7 +57,7 @@ void MatsSort(int Array[], int Array_Size)
         i++;
     }
 
-    int indexOfElement;   //"l_" för att variabeln är lokal (och C stöder inte fler variabler av samma namn)
+    int indexOfElement;
 
     //Lägg till största elementen i fel ordning tillbaka
     for (int i = Array_Size-1; i >= 0; i = i - 1)
