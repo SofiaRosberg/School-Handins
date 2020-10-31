@@ -61,7 +61,7 @@ void MatsSort(int l_Array[], int l_Array_Size) //"l_" för att variabeln är lok
 
     int l_indexOfElement;   
 
-    //Lägg till största elementen i fel ordning tillbaka
+    //Lägg till största elementen i bakåtvänd ordning tillbaka
     for (int i = l_Array_Size-1; i >= 0; i = i - 1)
     {
         l_indexOfElement = 0;
