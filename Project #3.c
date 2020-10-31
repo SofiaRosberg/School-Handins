@@ -47,7 +47,7 @@ int main()
 
 
 //Funktion som sorterar listan enligt Mats princip (ta ut största elementet)
-void MatsSort(int l_Array[], int l_Array_Size)
+void MatsSort(int l_Array[], int l_Array_Size) //"l_" för att variabeln är lokal (undvika förvirring)
 {
     clock_t t0 = clock();
     int tempArray[l_Array_Size];
@@ -59,7 +59,7 @@ void MatsSort(int l_Array[], int l_Array_Size)
         i++;
     }
 
-    int l_indexOfElement;   //"l_" för att variabeln är lokal (och C stöder inte fler variabler av samma namn)
+    int l_indexOfElement;   
 
     //Lägg till största elementen i fel ordning tillbaka
     for (int i = l_Array_Size-1; i >= 0; i = i - 1)
