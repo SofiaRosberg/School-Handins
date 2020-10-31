@@ -64,7 +64,7 @@ void MatsSort(int Array[], int Array_Size)
     {
         indexOfElement = 0;
         //Söker igenom arrayen efter dess största element
-        for (int j = 0; j < Array_Size; j++)
+        for (int j = 1; j < Array_Size; j++)
         {
             if (tempArray[j] > tempArray[indexOfElement])
             {
