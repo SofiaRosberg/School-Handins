@@ -8,8 +8,6 @@
         och lägger det till ”sorteringslista” och sedan tar bort talet från ursprungslistan.
  (b) InsertionSort(): Skriv ett program baserat på en annan sorteringsalgoritm.
  (c) Jämför dessa med Pythons list.sort().
-
- Jämför hur effektiv denna variant är för att sortera stora listor (tex slumptalslistor) jämfört med den i den förra uppgiften samt den inbyggda funktionen lista.sort(). Ett sätt att mäta hur ”bra” en algoritm är är att räkna antalet operationer som utförs. Du kan t.ex. räkna antalet jämförelser som krävs för en sortering Ett annat alternativ är att mäta exekveringstiden, tex med funktionen time.process_time() som skriver ut gången tid  i sekunder. För en variant som kan vara effektiv i stora slumptalslistor, se nedan… Andra alternativ är att söka andra rutiner såsom bubblesort, heapsort m.m. (A)
 */
 
 //Program som sorterar en lista//
@@ -36,7 +34,7 @@ int main()
     PrintList(Array, Array_Size);
 
     //Byt ut "MatsSort()" mot "InsertionSort()" för att ändra använd sorteringsalgoritm
-    MatsSort(Array, Array_Size);
+    InsertionSort(Array, Array_Size);
 
     PrintList(Array, Array_Size);
 
@@ -47,59 +45,59 @@ int main()
 
 
 //Funktion som sorterar listan enligt Mats princip (ta ut största elementet)
-void MatsSort(int l_Array[], int l_Array_Size) //"l_" för att variabeln är lokal (undvika förvirring)
+void MatsSort(int Array[], int Array_Size)
 {
     clock_t t0 = clock();
-    int tempArray[l_Array_Size];
+    int tempArray[Array_Size];
 
     //Kopiera originalarrayen till en ny lista att lagra informationen i
-    for (int i = 0; i < l_Array_Size;)
+    for (int i = 0; i < Array_Size;)
     {
-        tempArray[i] = l_Array[i];
+        tempArray[i] = Array[i];
         i++;
     }
 
-    int l_indexOfElement;   
+    int indexOfElement;   //"l_" för att variabeln är lokal (och C stöder inte fler variabler av samma namn)
 
-    //Lägg till största elementen i bakåtvänd ordning tillbaka
-    for (int i = l_Array_Size-1; i >= 0; i = i - 1)
+    //Lägg till största elementen i fel ordning tillbaka
+    for (int i = Array_Size-1; i >= 0; i = i - 1)
     {
-        l_indexOfElement = 0;
+        indexOfElement = 0;
         //Söker igenom arrayen efter dess största element
-        for (int j = 0; j < l_Array_Size; j++)
+        for (int j = 0; j < Array_Size; j++)
         {
-            if (tempArray[j] > tempArray[l_indexOfElement])
+            if (tempArray[j] > tempArray[indexOfElement])
             {
-                l_indexOfElement = j;
+                indexOfElement = j;
             }
         }
-        l_Array[i] = tempArray[l_indexOfElement]; //Elementet på plats i sätts till det största hittade elementet
-        tempArray[l_indexOfElement] = INT_MIN;    //Sätter största hittade elementet till minsta talet som finns (undvika stöta på igen)
+        Array[i] = tempArray[indexOfElement]; //Elementet på plats i sätts till det största hittade elementet
+        tempArray[indexOfElement] = INT_MIN;    //Sätter största hittade elementet till minsta talet som finns (undvika stöta på igen)
     }
     clock_t t1 = clock();
     executionTime = (double)(t1-t0) / CLOCKS_PER_SEC;
 }
 
 //Sorterar en lista genom principen att flytta fram lägre tal i listan (till lägre index)
-void InsertionSort(int l_Array[], int l_Array_Size)
+void InsertionSort(int Array[], int Array_Size)
 {
     clock_t t0 = clock();
     int storedint;
     int j;
 
     //Varje tal i listan jämförs med tidigare tal i listan
-    for (int i = 1; i < l_Array_Size; i++)
+    for (int i = 0; i < Array_Size; i++)
     {
-        storedint = l_Array[i];
+        storedint = Array[i];
         j = i - 1;
 
         //Flytta fram talet en plats varje gång ett tidigare tal i listan är större (utbyt talen med varandra)
-        while (j >= 0 && storedint < l_Array[j])
+        while (j >= 0 && storedint < Array[j])
         {
-            l_Array[j+1] = l_Array[j];
+            Array[j+1] = Array[j];
             j = j - 1;
         }
-        l_Array[j+1] = storedint;
+        Array[j+1] = storedint;
     }
 
     clock_t t1 = clock();
@@ -107,22 +105,22 @@ void InsertionSort(int l_Array[], int l_Array_Size)
 }
 
 //Skriver ut innehållet i en array
-void PrintList(int l_Array[], int l_Array_Size)
+void PrintList(int Array[], int Array_Size)
 {
-    printf("Array -- SIZE: %d\n", l_Array_Size);
-    for (int i = 0; i < l_Array_Size; i++)
+    printf("Array -- SIZE: %d\n", Array_Size);
+    for (int i = 0; i < Array_Size; i++)
     {
-        printf("ID %d value: %d\n", i, l_Array[i]);
+        printf("ID %d value: %d\n", i, Array[i]);
     }
     printf("------------\n");
 }
 
 //Genererar element till en array av given storlek
-void GenerateArray(int l_Array[], int l_Array_Size)
+void GenerateArray(int Array[], int Array_Size)
 {
-    for (int i = 0; i < l_Array_Size; i++)
+    for (int i = 0; i < Array_Size; i++)
     {
-        l_Array[i] = rand() % MAX_NUMSIZE;
+        Array[i] = rand() % MAX_NUMSIZE;
     }
 }
 
