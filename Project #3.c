@@ -34,7 +34,7 @@ int main()
     PrintList(Array, Array_Size);
 
     //Byt ut "MatsSort()" mot "InsertionSort()" för att ändra använd sorteringsalgoritm
-    InsertionSort(Array, Array_Size);
+    MatsSort(Array, Array_Size);
 
     PrintList(Array, Array_Size);
 
