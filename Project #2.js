@@ -35,7 +35,7 @@ var wordsizelimit = 29; //Standard: 29, längsta engelska ordet är 29 bokstäve
 
 function start()
 {
-	//Du får välja mellan att din kompis skriver in ett ord eller att datorn ska slumpa fram ett
+	//Användaren väljer mellan att din kompis skriver in ett ord eller att datorn slumpar fram ett
 	if (confirm("Klicka på OK om du vill att din kompis skriver in ett ord. Klicka på avbryt om du vill att datorn ska slumpa fram ett ord åt dig att gissa."))
     	{
       		var usingillegalcharacters = true;
@@ -102,6 +102,7 @@ function start()
             	return;  
             }
           
+          	//Användaren får välja svårighetsgrad
 			switch (difficultyfactor)
           		{
               			case '1':
@@ -122,7 +123,7 @@ function start()
 		}
 	}
  	
-	//Om ordet är längre än 10 bokstäver, måste det skalas ned
+	//Om ordet är längre än 10 bokstäver, måste svarsrutorna skalas ned
   	letterslefttoguess = wordtoguess.length;
   	if (wordtoguess.length > 7 )
     	{
@@ -136,12 +137,12 @@ function start()
         	displaytext += "_";
      	}
 		
-  	/*Fortsätter spelet medan du har fler än 0 försök,
+  	/*Användaren får fortsätta spelet medan du har fler än 0 försök,
   	vinner spelet om du lyckas gissa fram ordet
   	förlorar spelet om du får slut på försök */
 	while (lives > 0)
 	{
-		UpdateGUI();
+		UpdateGUI();	//Uppdateras efter varje gissning
 		MakeAGuess();
           
           	if (letterslefttoguess === 0)
@@ -157,9 +158,7 @@ function start()
    
 }
 
-/*Du får gissa ett ord eller en bokstav
-Du får avdrag om det är fel
-Gissar du rätt får du se på skärmen vilka platser bokstaven befinner sig på i ordet*/
+//Användaren får gissa på ett helt ord eller på en bokstav
 function MakeAGuess()
 {
 	let askedletter = prompt("Gissa en bokstav eller ett ord");
@@ -167,7 +166,7 @@ function MakeAGuess()
   	if (askedletter != null)
     	{
               
-		//Ordet ska exakt matcha det rätta ordet, annars får du avdrag
+		//Användaren gissar på ett helt ord, måste då exakt matcha det rätta ordet
 		if (askedletter.length > 1)
 		{
 			if (askedletter === wordtoguess)
@@ -180,12 +179,12 @@ function MakeAGuess()
 		    	}
 		}
       	
-      		//Om du gissar fel bokstav får du avdrag, gissar du rätt visas bokstaven på skärmen
+      		//Användaren gissar på en bokstav
 		if (askedletter.length === 1)
         	{
               		var givepenalty = true;
 
-              		//Förhindra att du får avdrag om du redan gissat på bokstaven tidigare
+              		//Användaren får inte avdrag om du redan gissat på bokstaven tidigare
               		var alreadyinlist = false;
               		for (var i = 0; i < alreadyguessedletters.length; i++)
               		{
@@ -197,10 +196,10 @@ function MakeAGuess()
                       }
               		}
 
-		      //Gissar du rätt avslöjas motsvarande ruta(or) till bokstavens plats(er) i ordet på skärmen
+		      //Gissar anändaren rätt avslöjas motsvarande ruta(or) till bokstavens plats(er) i ordet på skärmen
 		      for (var i = 0; i < wordtoguess.length; i++)
 		      {
-		      		//Notera att platsen för motsvarande ruta till bokstavens index i ordet, är 2i + 1 (där i är indexet)
+		      		//Platsen för motsvarande ruta till bokstavens index i ordet, är 2i + 1 (där i är indexet)
 				if (askedletter.charAt(0) === wordtoguess.charAt(i) && !alreadyinlist)
 			  	{
 			    		displaytext = displaytext.substr(0, (2*i + 1)) + askedletter.charAt(0) + displaytext.substr(2*i + 2);
@@ -209,11 +208,12 @@ function MakeAGuess()
 			  	}
 
 			}
-
+					//Lägger till den gissade bokstaven i en lista av gissade bokstäver
               		if (!alreadyinlist)
               		{
                   		alreadyguessedletters.push(askedletter.charAt(0));              
 			}
+              		//Användaren förlorar ett liv om den blivit flaggad för ett avdrag
               		if (givepenalty)
               		{
                   		lives = lives - 1 * loselivesfactor;
@@ -224,6 +224,7 @@ function MakeAGuess()
     	}
   	else
     {
+    //Bekräftningsfönster för om användaren vill avsluta spelet
     let askedletter = prompt("Är du säker på att vill avsluta spelet? (Klicka på OK för att stänga ner spelet)"); 
      switch(askedletter)
       {
@@ -237,7 +238,7 @@ function MakeAGuess()
   
 }
 
-//Ritar grafiken på skärmen som sedan uppdateras varje gång funktionen kallas
+//Ritar/uppdaterar grafiken på skärmen
 function UpdateGUI()
 {
   	clearScreen();
@@ -246,7 +247,7 @@ function UpdateGUI()
   	text(totalWidth - 1841 * scalesizefactorX, totalHeight - totalHeight + 150 * scalesizefactorY, 140 * scalesizefactor1D, "Lives left: " + ceil(lives / loselivesfactor), 'purple');
   	
   	switch(lives)
-    {   
+    {     
       case 1: //Gör gubben röd
         hangmancolor = 'red';
       case 2: //Rött hav
@@ -269,13 +270,13 @@ function UpdateGUI()
       case 10: //Rita vänstra ögat
         circle(1740 * scalesizefactorX, 129 * scalesizefactorY, 7, 'white');
         circle(1740 * scalesizefactorX, 129 * scalesizefactorY, 3, 'red');
-      case 11: //Sista delen av "hängkroken"
+      case 11: //Stöd mellan horisontell och vertikal stomme av galjen
       	line(1430 * scalesizefactorX, 185 * scalesizefactorY, 1590 * scalesizefactorX, 92 * scalesizefactorY, 30 * scalesizefactor1D, 'brown');
-      case 12: //=||= Tre liv, ... osv.
+      case 12: //Horisontell stomme av galjen 
         line(1430 * scalesizefactorX, 92 * scalesizefactorY, 1770 * scalesizefactorX, 92 * scalesizefactorY, 75 * scalesizefactor1D, 'brown');
-      case 13: //=||= Två liv
+      case 13: //Vertikal stomme av galjen
       	line(1430 * scalesizefactorX, 462 * scalesizefactorY, 1430 * scalesizefactorX, 92 * scalesizefactorY, 75 * scalesizefactor1D, 'brown');
-      case 14: //Har förlorat ett liv
+      case 14: //Har förlorat ett liv. Rita grön kulle
       	arc(1430 * scalesizefactorX, 462 * scalesizefactorY, 251 * scalesizefactor1D, 180, 101 * scalesizefactor1D, 'green');
       case 'default':
         break;
@@ -297,6 +298,7 @@ function Defeat()
   		screentextcolor = 'red';
 		text(totalWidth - 1571 * scalesizefactorX, totalHeight/2, 250 * scalesizefactor1D, "You lose!", screentextcolor);  
   		hangmancolor = 'red';
+  		//Samma kod som vid switch(lives) tidigare. Se där för förklaring.
         line(1770 * scalesizefactorX, 314 * scalesizefactorY, 1852 * scalesizefactorX, 369 * scalesizefactorY, 25 * scalesizefactor1D, hangmancolor);
         line(1770 * scalesizefactorX, 166 * scalesizefactorY, 1689 * scalesizefactorX, 234 * scalesizefactorY, 25 * scalesizefactor1D, hangmancolor);
         line(1770 * scalesizefactorX, 148 * scalesizefactorY, 1770 * scalesizefactorX, 314 * scalesizefactorY, 25 * scalesizefactor1D, hangmancolor);
