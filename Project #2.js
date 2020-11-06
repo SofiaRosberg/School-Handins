@@ -246,12 +246,7 @@ function UpdateGUI()
   	text(totalWidth - 1841 * scalesizefactorX, totalHeight - totalHeight + 150 * scalesizefactorY, 140 * scalesizefactor1D, "Lives left: " + ceil(lives / loselivesfactor), 'purple');
   	
   	switch(lives)
-    {
-        //Ändra om från 9 till attempts;  sedan attempts - 1 (attempts.length/9)
-        //Lägga in system för att minska attempts beroende på antal försök kvar
-        //Case < eller > beroende på, om man lägger till fler försök
-        
-        
+    {   
       case 1: //Gör gubben röd
         hangmancolor = 'red';
       case 2: //Rött hav
