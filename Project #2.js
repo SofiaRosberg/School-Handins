@@ -44,7 +44,7 @@ function start()
               		usingillegalcharacters = false;
 			wordtoguess = prompt("Skriv in ditt ord här: ", "");
               
-              		//Avslutar spelet om du klickat på avbryt
+              		//Avslutar spelet om du klickar på avbryt
 			if (wordtoguess === null)
                    	{
                       		return;
@@ -86,7 +86,11 @@ function start()
               
 		}
 			
-            
+    loselivesfactor = prompt("Skriv in en egen svårighetsgrad eller klicka på avbryt för att använda standard. Desto högre, desto färre försök");
+    if (loselivesfactor === null || loselivesfactor <= 0)
+    {
+    loselivesfactor = 1;  
+    }
 
 	}
 	
