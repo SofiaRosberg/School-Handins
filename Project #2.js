@@ -182,25 +182,23 @@ function MakeAGuess()
       		//Användaren gissar på en bokstav
 		if (askedletter.length === 1)
         	{
-              		var givepenalty = true;
+              		
 
               		//Användaren får inte avdrag om du redan gissat på bokstaven tidigare
-              		var alreadyinlist = false;
               		for (var i = 0; i < alreadyguessedletters.length; i++)
               		{
 				if (alreadyguessedletters[i] === askedletter.charAt(0))
 				{
-					givepenalty = false;
-				  	alreadyinlist = true
-				  	break;
+				  	return;
 				}
               		}
-
+			
+              var givepenalty = true;
 		      //Gissar anändaren rätt avslöjas motsvarande ruta(or) till bokstavens plats(er) i ordet på skärmen
 		      for (var i = 0; i < wordtoguess.length; i++)
 		      {
 		      		//Platsen för motsvarande ruta till bokstavens index i ordet, är 2i + 1 (där i är indexet)
-				if (askedletter.charAt(0) === wordtoguess.charAt(i) && !alreadyinlist)
+				if (askedletter.charAt(0) === wordtoguess.charAt(i))
 			  	{
 			    		displaytext = displaytext.substr(0, (2*i + 1)) + askedletter.charAt(0) + displaytext.substr(2*i + 2);
 			    		letterslefttoguess = letterslefttoguess - 1;
@@ -209,10 +207,8 @@ function MakeAGuess()
 
 			}
 					//Lägger till den gissade bokstaven i en lista av gissade bokstäver
-              		if (!alreadyinlist)
-              		{
                   		alreadyguessedletters.push(askedletter.charAt(0));              
-			}
+
               		//Användaren förlorar ett liv om den blivit flaggad för ett avdrag
               		if (givepenalty)
               		{
