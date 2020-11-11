@@ -114,7 +114,7 @@ void InsertionSort(int Array[], int Array_Size)
         storedint = Array[i];
         j = i - 1;
 
-        //Flytta fram talet en plats varje gång ett tidigare tal i listan är större (utbyt talen med varandra)
+        //Flytta fram större tal i listan
         while (j >= 0 && storedint < Array[j])
         {
             Array[j+1] = Array[j];    //Flyttar fram det tidigare talet en plats
