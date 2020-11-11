@@ -62,6 +62,7 @@ int main()
     PrintList(Array, Array_Size);
 
     printf("Execution time %f s\n", executionTime);
+    free(Array);
     return 0;
 }
 
