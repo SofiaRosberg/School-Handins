@@ -29,9 +29,7 @@ public class Grid : MonoBehaviour
 		if (meshRenderer.sharedMaterial == null)
 		{
 			
-			Debug.Log("<color=red>Warning, no material has been assigned for Grid with ID: </color>" + this.gameObject.GetInstanceID() + ", located at: " + this.gameObject.transform.position + "");
-			
-			meshRenderer.sharedMaterials = new Material[1];			
+			Debug.Log("<color=red>Warning, no material has been assigned for Grid with ID: </color>" + this.gameObject.GetInstanceID() + ", located at: " + this.gameObject.transform.position + "");	
 			return;
 		}
 		if (xSize == 0 || ySize == 0)
