@@ -25,7 +25,7 @@ public class Grid : MonoBehaviour
 	{		
 
 		MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
-		//Kontroll som lägger till ett material till rutnätet om du inte redan gjort det
+		//Kontroll att du lägger till ett material till rutnätet för att den ska kunna rita upp det
 		if (meshRenderer.sharedMaterial == null)
 		{
 			
