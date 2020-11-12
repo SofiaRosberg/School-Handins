@@ -27,8 +27,7 @@ public class Grid : MonoBehaviour
 		MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
 		//Kontroll att du lägger till ett material till rutnätet för att den ska kunna rita upp det
 		if (meshRenderer.sharedMaterial == null)
-		{
-			
+		{	
 			Debug.Log("<color=red>Warning, no material has been assigned for Grid with ID: </color>" + this.gameObject.GetInstanceID() + ", located at: " + this.gameObject.transform.position + "");	
 			return;
 		}
