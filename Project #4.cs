@@ -31,8 +31,7 @@ public class Grid : MonoBehaviour
 			
 			Debug.Log("<color=red>Warning, no material has been assigned for Grid with ID: </color>" + this.gameObject.GetInstanceID() + ", located at: " + this.gameObject.transform.position + "");
 			
-			meshRenderer.sharedMaterials = new Material[1];
-			meshRenderer.sharedMaterials[0] = Resources.Load<Material>("Resources/unity_builtin_extra/SpatialMappingWireframe");			
+			meshRenderer.sharedMaterials = new Material[1];			
 			return;
 		}
 		if (xSize == 0 || ySize == 0)
