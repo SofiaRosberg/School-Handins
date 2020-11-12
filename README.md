@@ -1,3 +1,3 @@
 # School-Handins
 
-För att hålla inlämningarna på ett och samma ställe.
+Programmering 1, gymnasiekurs. 
