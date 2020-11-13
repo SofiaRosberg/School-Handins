@@ -39,7 +39,7 @@ int main()
     int selectedSortingAlgorithm = 1;
 
     GenerateArray(Array, Array_Size);
-    PrintList(Array, Array_Size);
+    //PrintList(Array, Array_Size);
 
     printf("\nEnter which sorting algorithm you want to use: \n1 for Matssort, 2 for Insertionsort, 3 for qsort\n");
     scanf("%d", &selectedSortingAlgorithm);
@@ -63,7 +63,7 @@ int main()
             clock_t t1 = clock();
             executionTime = (double)(t1-t0) / CLOCKS_PER_SEC;
 
-    PrintList(Array, Array_Size);
+    //PrintList(Array, Array_Size);
 
     printf("Execution time %f s\n", executionTime);
     free(Array);
@@ -101,7 +101,6 @@ void MatsSort(int Array[], int Array_Size)
         Array[i] = tempArray[indexOfElement]; //Elementet på plats i sätts till det största hittade elementet
         tempArray[indexOfElement] = INT_MIN;    //Sätter största hittade elementet till minsta talet som finns (undvika stöta på igen)
     }
-
 }
 
 
