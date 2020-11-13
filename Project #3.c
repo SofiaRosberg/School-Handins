@@ -19,7 +19,7 @@ double executionTime;
 
 int main()
 {
-    //Kompilatorn kräver implicita deklarationer av funktioner i programmet
+    //Kompilatorn kräver deklarationer av funktioner i programmet
     void GenerateArray();
     void MatsSort();
     void PrintList();
@@ -31,7 +31,11 @@ int main()
     printf("Enter size of array you want to create: \n");
     scanf("%d", &Array_Size);
     printf("Roger that. Array size set to: %d\n", Array_Size);
-    int* Array = malloc(Array_Size*sizeof(int));
+
+
+    int* Array;
+    Array = malloc(Array_Size*sizeof(int));
+
     int selectedSortingAlgorithm = 1;
 
     GenerateArray(Array, Array_Size);
@@ -106,22 +110,21 @@ void MatsSort(int Array[], int Array_Size)
 void InsertionSort(int Array[], int Array_Size)
 {
     int storedint;
-    int j;
+    int elementbefore;
 
     //Varje tal i listan jämförs med tidigare tal i listan
-
     for (int i = 1; i < Array_Size; i++)
     {
         storedint = Array[i];
-        j = i - 1;
+        elementbefore = i - 1;
 
-        //Flytta fram större tal i listan
-        while (j >= 0 && storedint < Array[j])
+        //Flytta fram talet en plats varje gång ett tidigare tal i listan är större (utbyt talen med varandra)
+        while (elementbefore >= 0 && storedint < Array[elementbefore])
         {
-            Array[j+1] = Array[j];    //Flyttar fram det tidigare talet en plats
-            j = j - 1;
+            Array[elementbefore+1] = Array[elementbefore];    //Flyttar fram det tidigare talet en plats
+            elementbefore = elementbefore - 1;
         }
-        Array[j+1] = storedint;
+        Array[elementbefore+1] = storedint;
     }
 
 }
