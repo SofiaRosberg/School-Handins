@@ -17,6 +17,7 @@ public class Grid : MonoBehaviour
 	//Konfig
 	public int xSize, ySize;					//Sätts i Unity-inspekteraren till 50 och 50
 	public float groundOffset = 0.01f;
+	public int cellSize; //Sätts i unity-inspekteraren, annars 1 per default.
 	private Mesh mesh;
 	
 	//Den ska enbart skapa rutnätet under edit-mode, ej under runtime
@@ -25,18 +26,25 @@ public class Grid : MonoBehaviour
 	{		
 
 		MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
-		//Kontroll att du lägger till ett material till rutnätet för att den ska kunna rita upp det
+		//Kontroll som lägger till ett material till rutnätet om du inte redan gjort det
 		if (meshRenderer.sharedMaterial == null)
-		{	
-			Debug.Log("<color=red>Warning, no material has been assigned for Grid with ID: </color>" + this.gameObject.GetInstanceID() + ", located at: " + this.gameObject.transform.position + "");	
+		{
+			
+			Debug.Log("<color=red>Warning, no material has been assigned for Grid with ID: </color>" + this.gameObject.GetInstanceID() + ", located at: " + this.gameObject.transform.position + "");		
 			return;
 		}
-		if (xSize == 0 || ySize == 0)
+		if (xSize <= 0 || ySize <= 0)
 		{
 			Debug.Log("<color=red>Warning, no xSize or ySize has been assigned for Grid with ID: </color>" + this.gameObject.GetInstanceID() + ", located at: " + this.gameObject.transform.position + "");
 			Debug.Log("Assigning 50*50 as default");
-			this.xSize = 50;
-			this.ySize = 50;
+			xSize = 50;
+			ySize = 50;
+		}
+		if (cellSize <= 0)
+		{
+			Debug.Log("Warning, no cellSize has been assigned for Grid with ID: </color>" + this.gameObject.GetInstanceID() + ", located at: " + this.gameObject.transform.position + "");
+			Debug.Log("Assigning 1 as default");
+			cellSize = 1;
 		}
 		
 		Generate();
@@ -147,6 +155,7 @@ public class Grid : MonoBehaviour
 		uvmaps = new Vector2[vertices.Length];				//Låter oss färglägga enskilda rutor av rutnätet senare
 		tangents = new Vector4[vertices.Length];			//Möjliggör användning av shaders som ger en illusion av ojämn yta "bump-maps" 
 		Vector4 tangent = new Vector4(1f, 0f, 0f, -1f);		//Tangent orienterad i horisontell riktning längs våra UV-koordinater
+		
 		tiles = new GridTile[xSize+1, ySize+1]; 							
 		horizontalwalls = new GridWall[xSize, ySize*2];
 		verticalwalls = new GridWall[xSize, ySize*2];
@@ -159,7 +168,7 @@ public class Grid : MonoBehaviour
 			for (int x = 0; x <= xSize; x++)  		
 			{											
 				//Ett nytt hörn skapas och läggs in i listan
-				vertices[currentVertexIndex] = new Vector3(x, 0f, y); 		
+				vertices[currentVertexIndex] = new Vector3(x*cellSize, 0f, y*cellSize); 		
 				
 				//Lägger till alla rutor men skippar detta på de extra, sista raderna
 				if (x != xSize && y != ySize)		
@@ -181,14 +190,15 @@ public class Grid : MonoBehaviour
 		mesh.tangents = tangents;	
 
 		//[[[Handle för horisontella respektive vertikala väggar
-		
+		//Debug.Log("Position for corner at 0,0: " + tiles[49, 49].getRealPos());
+		//Debug.Log("Position for corner at 1,0: " + tiles[49, 48].getRealPos());
 		// Placera en "tom" vägg på varje plats på tomten.
 		for (int y = 0; y <= ySize; y++)
 		{
 			for (int x = 0; x < xSize; x++)
 			{
-				horizontalwalls[x,y] = new GridWall(x,y, this.transform.TransformPoint(new Vector3(x, 0, y)));
-				verticalwalls[x,y] = new GridWall(y,x, new Vector3(y, 0, x));
+				horizontalwalls[x,y] = new GridWall(x,y, this.transform.TransformPoint(new Vector3((x+ ((float)cellSize/2)), 0, y)));
+				verticalwalls[x,y] = new GridWall(x,y, this.transform.TransformPoint(new Vector3(x, 0, y+ ((float)cellSize/2))));
 			}
 		}
 		
