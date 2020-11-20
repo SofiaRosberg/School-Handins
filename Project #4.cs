@@ -18,7 +18,7 @@ public class Grid : MonoBehaviour
 	public int xSize, ySize;					//Sätts i Unity-inspekteraren till 50 och 50
 	public float groundOffset = 0.01f;
 	public int cellSize; //Sätts i unity-inspekteraren, annars 1 per default.
-	private Mesh mesh;
+	public Mesh mesh;
 	
 	//Den ska enbart skapa rutnätet under edit-mode, ej under runtime
 	#if UNITY_EDITOR
@@ -137,6 +137,8 @@ public class Grid : MonoBehaviour
 	public Vector3[] vertices;
 	public Vector2[] uvmaps;
 	public Vector4[] tangents;	
+	
+	// 
 	public GridTile[,] tiles;	
 	public GridWall[,] horizontalwalls;
 	public GridWall[,] verticalwalls;
@@ -189,12 +191,12 @@ public class Grid : MonoBehaviour
 		mesh.uv = uvmaps;				
 		mesh.tangents = tangents;	
 
-		//[[[Handle för horisontella respektive vertikala väggar
 		// Placera en "tom" vägg på varje plats på tomten.
 		for (int y = 0; y <= ySize; y++)
 		{
 			for (int x = 0; x < xSize; x++)
 			{
+				// skapa tom horisontell och vertikal vägg på koordinaty x,y
 				horizontalwalls[x,y] = new GridWall(x,y, this.transform.TransformPoint(new Vector3((x +((float)cellSize/2)), 0, y)));
 				verticalwalls[x,y] = new GridWall(x,y, this.transform.TransformPoint(new Vector3(x, 0, y +((float)cellSize/2))));
 			}
