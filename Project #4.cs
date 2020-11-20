@@ -190,14 +190,15 @@ public class Grid : MonoBehaviour
 		mesh.tangents = tangents;	
 
 		//[[[Handle för horisontella respektive vertikala väggar
-
+		//Debug.Log("Position for corner at 0,0: " + tiles[49, 49].getRealPos());
+		//Debug.Log("Position for corner at 1,0: " + tiles[49, 48].getRealPos());
 		// Placera en "tom" vägg på varje plats på tomten.
 		for (int y = 0; y <= ySize; y++)
 		{
 			for (int x = 0; x < xSize; x++)
 			{
-				horizontalwalls[x,y] = new GridWall(x,y, this.transform.TransformPoint(new Vector3((x+ ((float)cellSize/2)), 0, y)));
-				verticalwalls[x,y] = new GridWall(x,y, this.transform.TransformPoint(new Vector3(x, 0, y+ ((float)cellSize/2))));
+				horizontalwalls[x,y] = new GridWall(x,y, this.transform.TransformPoint(new Vector3((x*(float)cellSize +((float)cellSize/2)), 0, y*(float)cellSize)));
+				verticalwalls[x,y] = new GridWall(x,y, this.transform.TransformPoint(new Vector3(x*(float)cellSize, 0, y*(float)cellSize +((float)cellSize/2))));
 			}
 		}
 		
