@@ -190,8 +190,6 @@ public class Grid : MonoBehaviour
 		mesh.tangents = tangents;	
 
 		//[[[Handle för horisontella respektive vertikala väggar
-		//Debug.Log("Position for corner at 0,0: " + tiles[49, 49].getRealPos());
-		//Debug.Log("Position for corner at 1,0: " + tiles[49, 48].getRealPos());
 		// Placera en "tom" vägg på varje plats på tomten.
 		for (int y = 0; y <= ySize; y++)
 		{
